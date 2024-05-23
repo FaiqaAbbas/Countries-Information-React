@@ -1,9 +1,19 @@
-import React from 'react'
-import countriesData from '../countriesData'
+import React, {useState,useEffect
+} from 'react'
+// import countriesData from '../countriesData'
 import CountryCard from './CountryCard'
 
 export default function CountriesList({searchQuery}) {
-  console.log(searchQuery)
+  const [countriesData, setcountriesData] = useState([])
+  useEffect(()=>{
+    fetch('https://reactcountriesinformation.netlify.app/public/countriesData.json')
+    .then((raw)=>raw.json())
+    .then((data) => {
+     setcountriesData(data)
+  })
+  },[])
+
+    
   return (
     <div className="countries-container">
       {
