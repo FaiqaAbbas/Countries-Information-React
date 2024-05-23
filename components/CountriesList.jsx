@@ -1,6 +1,4 @@
-import React, {useState,useEffect
-} from 'react'
-// import countriesData from '../countriesData'
+import React, {useState,useEffect} from 'react'
 import CountryCard from './CountryCard'
 
 export default function CountriesList({searchQuery}) {
