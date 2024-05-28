@@ -1,9 +1,9 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 export default function CountryCard({ name, flag, population, region, capital }) {
   return (
-    <a className="country-card" href={`/country.html?name=${name.common}`}>
-      <div class='image-container'>
+    <>
+    <a className="country-card" href={`/CountryDetail?countryName=${name}`}>
+      <div className='image-container'>
         <img src={flag} alt={name + ' Flag'} />
       </div>
       <div className="card-text">
@@ -20,5 +20,7 @@ export default function CountryCard({ name, flag, population, region, capital })
         </p>
       </div>
     </a>
+
+  </>
   )
 }
