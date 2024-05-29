@@ -5,6 +5,7 @@ import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom";
+import CountryDetails from "./components/CountryDetails";
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />
+        
+      },
+      {
+        path: "/countryDetails",
+        element: <CountryDetails />
         
       },
       
