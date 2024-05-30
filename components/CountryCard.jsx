@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 export default function CountryCard({ name, flag, population, region, capital }) {
   return (
     <>
-    <a className="country-card" href={`/CountryDetails?countryName=${name}`}>
+    <a className="country-card" href={`/${name}`}>
       <div className='image-container'>
         <img src={flag} alt={name + ' Flag'} />
       </div>

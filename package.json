@@ -2,8 +2,10 @@
   "name": "react_countries_data",
   "version": "1.0.0",
   "description": "",
+  "source": "index.html",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build":  "parcel build"
   },
   "keywords": [],
   "author": "",

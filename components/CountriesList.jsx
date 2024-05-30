@@ -12,7 +12,7 @@ export default function CountriesList({searchQuery}) {
   },[])
 
     
-  return (
+    return countriesData.length===0 ? <h1>Loading..</h1>:  (
     <div className="countries-container">
       {
         countriesData.

@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from "react";
 import "./CountryDetail.css";
+import { useParams } from "react-router-dom";
 export default function CountryDetails() {
-  const countryName = new URLSearchParams(location.search).get("countryName");
+  const { countryName } = useParams();
+  console.log(countryName);
   const [countryData, setCountryData] = useState("");
   // useEffect(function(){
   //     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
@@ -40,7 +42,18 @@ export default function CountryDetails() {
             <h1>{countryData[0].name.common}</h1>
             <div className="details-text">
               <p>
-                <b>Native Name: {countryData[0].name.nativeName.eng.common}</b>
+                <b>Official Name: {countryData[0].name.official}</b>
+                <span className="native-name"></span>
+              </p>
+              <p>
+                <b>
+                  Native Name:{" "}
+                  {Object.keys(countryData[0].name.nativeName).map((key) => (
+                    <span key={key}>
+                      {countryData[0].name.nativeName[key].common}
+                    </span>
+                  ))}
+                </b>
                 <span className="native-name"></span>
               </p>
               <p>
@@ -76,14 +89,22 @@ export default function CountryDetails() {
                 <span className="currencies"></span>
               </p>
               <p>
-                <b>Languages:
-                {Object.values(countryData[0].languages).join(', ')} </b>
+                <b>
+                  Languages:
+                  {Object.values(countryData[0].languages).join(", ")}
+                </b>
+                <span className="languages"></span>
+              </p>
+              <p>
+                <b>
+                  Border-Countries:
+                  
+                  {countryData[0].borders? Object.values(countryData[0].borders).join(", "):'No Bordering Countries Found'}
+                </b>
                 <span className="languages"></span>
               </p>
             </div>
-            <div className="border-countries">
-              <b>Border Countries: </b>&nbsp;
-            </div>
+           
           </div>
         </div>
       </div>
