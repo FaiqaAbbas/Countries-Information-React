@@ -15,7 +15,7 @@ export default function CountryDetails() {
   // },[])
 
   useEffect(function () {
-    fetch("https://restcountries.com/v3.1/all")
+    fetch("https://countriesinformationreact.netlify.app")
       .then((raw) => raw.json())
       .then((data) => {
         const filteredCountryData = data.filter((country) => {
