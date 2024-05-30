@@ -15,11 +15,11 @@ export default function CountryDetails() {
   // },[])
 
   useEffect(function () {
-    fetch("https://countriesinformationreact.netlify.app")
+    fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
       .then((raw) => raw.json())
       .then((data) => {
         const filteredCountryData = data.filter((country) => {
-          return country.name.common === countryName;
+          return country.name.common.toLowerCase() === countryName.toLowerCase();
         });
         setCountryData(filteredCountryData);
       });

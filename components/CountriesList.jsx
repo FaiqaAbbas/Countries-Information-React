@@ -4,7 +4,7 @@ import CountryCard from './CountryCard'
 export default function CountriesList({searchQuery}) {
   const [countriesData, setcountriesData] = useState([])
   useEffect(()=>{
-    fetch('https://countriesinformationreact.netlify.app')
+    fetch('https://reactcountriesdata.netlify.app/public/countriesdata.json')
     .then((raw)=>raw.json())
     .then((data) => {
      setcountriesData(data)
