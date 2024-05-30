@@ -34352,7 +34352,7 @@ function CountriesList({ searchQuery }) {
     _s();
     const [countriesData, setcountriesData] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
-        fetch("https://restcountries.com/v3.1/all").then((raw)=>raw.json()).then((data)=>{
+        fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json").then((raw)=>raw.json()).then((data)=>{
             setcountriesData(data);
         });
     }, []);
@@ -34540,9 +34540,9 @@ function CountryDetails() {
     //     )
     // },[])
     (0, _react.useEffect)(function() {
-        fetch("https://restcountries.com/v3.1/all").then((raw)=>raw.json()).then((data)=>{
+        fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json").then((raw)=>raw.json()).then((data)=>{
             const filteredCountryData = data.filter((country)=>{
-                return country.name.common === countryName;
+                return country.name.common.toLowerCase() === countryName.toLowerCase();
             });
             setCountryData(filteredCountryData);
         });
