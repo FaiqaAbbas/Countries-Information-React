@@ -1,29 +1,57 @@
-import { React, useState, useEffect } from "react";
-import "./CountryDetail.css";
-import { useParams } from "react-router-dom";
+import { React, useState, useEffect,Link } from "react";
+import "./CountryDetails.css";
+import { useParams,Link } from "react-router-dom";
 export default function CountryDetails() {
   const { countryName } = useParams();
   console.log(countryName);
   const [countryData, setCountryData] = useState("");
-  // useEffect(function(){
-  //     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
-  //     .then((raw)=>raw.json())
-  //     .then((data)=>{
-  //             setCountryData(data)
-  //         }
-  //     )
-  // },[])
+  fetch('https://countryapi.io/api/all').
+  then(raw=>raw.json())
+  .then(data=>{
+    console.log(data)
+  })
+  // // useEffect(function(){
+  // //     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
+  // //     .then((raw)=>raw.json())
+  // //     .then((data)=>{
+  // //             setCountryData(data)
+  // //         }
+  // //     )
+  // // },[])
 
   useEffect(function () {
     fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
       .then((raw) => raw.json())
       .then((data) => {
-        const filteredCountryData = data.filter((country) => {
+        var country = data.filter((country) => {
           return country.name.common.toLowerCase() === countryName.toLowerCase();
         });
-        setCountryData(filteredCountryData);
+        setCountryData({
+          name:country[0].name.common,
+          flag:country[0].flags.svg,
+          officialName:country[0].name.official,
+          nativeName:Object.keys(country[0].name.nativeName).map((key) => (
+            <span key={key}>
+              {country[0].name.nativeName[key].common}
+            </span>
+          )),
+
+          population:country[0].population.toLocaleString("en-IN"),
+          region: country[0].region,
+          subRegion:country[0].subregion,
+          capital:country[0].capital[0],
+          tld:country[0].tld[0],
+          curruncies:Object.values(country[0].currencies)
+          .map((currency) => currency.name)
+          .join(", "),
+          languages:Object.values(country[0].languages).join(", "),
+          borders:country[0].borders? Object.values(country[0].borders).map((border)=>{
+            return <Link to={`/${border}`} className="link">{`${border}`}</Link>
+          }):'No Bordering Countries Found'
+
+        });
       });
-  }, []);
+  }, [countryName]);
   console.log(countryData);
   return countryData === "" ? (
     "loading..."
@@ -35,73 +63,65 @@ export default function CountryDetails() {
         </span>
         <div className="country-details">
           <img
-            src={countryData[0].flags.svg}
-            alt={`${countryData[0].name.common} flag`}
+            src={countryData.flag}
+            alt={`${countryData.name} flag`}
           />
           <div className="details-text-container">
-            <h1>{countryData[0].name.common}</h1>
+            <h1>{countryData.name}</h1>
             <div className="details-text">
               <p>
-                <b>Official Name: {countryData[0].name.official}</b>
+                <b>Official Name: {countryData.officialName}</b>
                 <span className="native-name"></span>
               </p>
               <p>
                 <b>
-                  Native Name:{" "}
-                  {Object.keys(countryData[0].name.nativeName).map((key) => (
-                    <span key={key}>
-                      {countryData[0].name.nativeName[key].common}
-                    </span>
-                  ))}
+                  Native Name:{countryData.nativeName}
+                  {}
                 </b>
                 <span className="native-name"></span>
               </p>
               <p>
                 <b>
-                  Population:{" "}
-                  {countryData[0].population.toLocaleString("en-IN")}
+                  Population:{countryData.population}
                 </b>
                 <span className="population"></span>
               </p>
               <p>
-                <b>Region: {countryData[0].region}</b>
+                <b>Region: {countryData.region}</b>
                 <span className="region"></span>
               </p>
               <p>
-                <b>Sub Region: {countryData[0].subregion}</b>
+                <b>Sub Region: {countryData.subregion}</b>
                 <span className="sub-region"></span>
               </p>
               <p>
-                <b>Capital: {countryData[0].capital[0]}</b>
+                <b>Capital: {countryData.capital}</b>
                 <span className="capital"></span>
               </p>
               <p>
-                <b>Top Level Domain: {countryData[0].tld[0]}</b>
+                <b>Top Level Domain: {countryData.tld}</b>
                 <span className="top-level-domain"></span>
               </p>
               <p>
                 <b>
-                  Currencies:
-                  {Object.values(countryData[0].currencies)
-                    .map((currency) => currency.name)
-                    .join(", ")}
+                  Currencies:{countryData.curruncies}
                 </b>
                 <span className="currencies"></span>
               </p>
               <p>
                 <b>
                   Languages:
-                  {Object.values(countryData[0].languages).join(", ")}
+                  {countryData.languages}
                 </b>
                 <span className="languages"></span>
               </p>
-              <p>
+              <p className="border-countries"> 
                 <b>
-                  Border-Countries:
+                  Border-Countries:                 
                   
-                  {countryData[0].borders? Object.values(countryData[0].borders).join(", "):'No Bordering Countries Found'}
+                    {countryData.borders}
+                
                 </b>
-                <span className="languages"></span>
               </p>
             </div>
            
