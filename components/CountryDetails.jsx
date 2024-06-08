@@ -5,54 +5,48 @@ export default function CountryDetails() {
   const { countryName } = useParams();
   console.log(countryName);
   const [countryData, setCountryData] = useState("");
-  fetch('https://countryapi.io/api/all').
-  then(raw=>raw.json())
-  .then(data=>{
-    console.log(data)
-  })
-  // // useEffect(function(){
-  // //     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
-  // //     .then((raw)=>raw.json())
-  // //     .then((data)=>{
-  // //             setCountryData(data)
-  // //         }
-  // //     )
-  // // },[])
-
   useEffect(function () {
     fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
       .then((raw) => raw.json())
       .then((data) => {
-        var country = data.filter((country) => {
+        var [country] = data.filter((country) => {
           return country.name.common.toLowerCase() === countryName.toLowerCase();
         });
+        console.log(country)
         setCountryData({
-          name:country[0].name.common,
-          flag:country[0].flags.svg,
-          officialName:country[0].name.official,
-          nativeName:Object.keys(country[0].name.nativeName).map((key) => (
-            <span key={key}>
-              {country[0].name.nativeName[key].common}
-            </span>
-          )),
+          name:country.name.common?country.name.common:"Not Found",
+          flag:country.flags.svg,
+          officialName:country.name.official,
+          nativeName:country.name.nativeName?
+          <span>{Object.values(Object.values(country.name.nativeName)[0])[1]}</span>:'No native name found',
 
-          population:country[0].population.toLocaleString("en-IN"),
-          region: country[0].region,
-          subRegion:country[0].subregion,
-          capital:country[0].capital[0],
-          tld:country[0].tld[0],
-          curruncies:Object.values(country[0].currencies)
+          population:country.population.toLocaleString("en-IN"),
+          region: country.region,
+          subRegion:country.subregion,
+          capital:country.capital?country.capital[0]:'Not Found',
+          tld:country.tld?country.tld[0]:"Not Found",
+          curruncies:country.currencies?Object.values(country.currencies)
           .map((currency) => currency.name)
-          .join(", "),
-          languages:Object.values(country[0].languages).join(", "),
-          borders:country[0].borders? Object.values(country[0].borders).map((border)=>{
-            return <Link to={`/${border}`} className="link">{`${border}`}</Link>
-          }):'No Bordering Countries Found'
+          .join(", "):'Not Found',
+          languages:country.languages?Object.values(country.languages).join(", "):'No languages found',
+          borders: []
+        })
 
-        });
+        if(!country.borders) {
+          country.borders = []
+        }
+
+        Promise.all(country.borders.map(async (border) => {
+          return await fetch(`https://reactcountriesdata.netlify.app/public/borders/${border.toLowerCase()}.json`)
+          .then((res) => res.json())
+          .then(([borderCountry]) => borderCountry.name.common)
+        })).then((borders) => {
+          setCountryData((prevState) => ({...prevState, borders}))
+        })
+      
       });
   }, [countryName]);
-  console.log(countryData);
+  // console.log(countryData);
   return countryData === "" ? (
     "loading..."
   ) : (
@@ -91,7 +85,7 @@ export default function CountryDetails() {
                 <span className="region"></span>
               </p>
               <p>
-                <b>Sub Region: {countryData.subregion}</b>
+                <b>Sub Region: {countryData.subRegion}</b>
                 <span className="sub-region"></span>
               </p>
               <p>
@@ -117,9 +111,14 @@ export default function CountryDetails() {
               </p>
               <p className="border-countries"> 
                 <b>
-                  Border-Countries:                 
+                  Border-Countries:       
                   
-                    {countryData.borders}
+                   {countryData.borders.length!=0?
+                   countryData.borders.map((border)=>
+                    <Link to={`/${border}`} className="link">{border}</Link>
+                   ):"No bordering countries found"
+                  }
+                   
                 
                 </b>
               </p>
