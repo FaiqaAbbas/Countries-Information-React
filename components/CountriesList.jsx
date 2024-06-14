@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import CountryCard from './CountryCard'
-
+import CountriesListShimmer from './CountriesListShimmer'
 export default function CountriesList({searchQuery}) {
   const [countriesData, setcountriesData] = useState([])
   useEffect(()=>{
@@ -12,7 +12,10 @@ export default function CountriesList({searchQuery}) {
   },[])
 
     
-    return countriesData.length===0 ? <h1>Loading..</h1>:  (
+    // return countriesData.length===0 ? <h1>Loading..</h1>:  (
+    return countriesData.length==0?  <CountriesListShimmer />: (
+    <>
+    
     <div className="countries-container">
       {
         countriesData.
@@ -33,6 +36,7 @@ export default function CountriesList({searchQuery}) {
         })
       }
     </div>
+    </>
     )
      
 }

@@ -146,6 +146,43 @@ a {
   }
 }
 
+.shimmer-card {
+  background-color: var(--elements-color);
+  border-radius: 8px;
+  width: 250px;
+  height: 320px;
+  padding-bottom: 24px;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  overflow: hidden;
+  box-shadow: 0 0 8px #0003;
+}
+
+.shimmer-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 16px #0003;
+}
+
+.shimmer-card .image-container {
+  background-color: #bbb;
+  height: 150px;
+}
+
+.shimmer-title {
+  font-size: 24px;
+}
+
+.shimmer-text {
+  padding-inline: 16px;
+}
+
+.shimmer-title, .shimmer-text p {
+  color: #9e9e9e;
+  background-color: #9e9e9e;
+  width: fit-content;
+  margin: .8rem 0;
+}
+
 .country-details-container {
   margin-inline: auto;
   max-width: 1200px;
@@ -213,5 +250,14 @@ a {
     width: 100%;
     max-width: 400px;
   }
+}
+
+.shimmer-image {
+  background-color: #9e9e9e;
+  height: 32vh;
+}
+
+.shimmer-text {
+  color: #9e9e9e;
 }
 /*# sourceMappingURL=index.c41b5a0e.css.map */

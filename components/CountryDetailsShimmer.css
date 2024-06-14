@@ -1,0 +1,9 @@
+.shimmer-image{
+    height: 32vh;
+    background-color: rgb(158, 158, 158);
+    }
+    
+.shimmer-text{
+    /* background-color: rgb(158, 158, 158); */
+     color: rgb(158, 158, 158);
+}

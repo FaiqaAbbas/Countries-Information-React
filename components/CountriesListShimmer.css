@@ -1,0 +1,35 @@
+.shimmer-card {
+    display: inline-block;
+    width: 250px;
+    height: 320px;
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 24px;
+    box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+    background-color: var(--elements-color);
+}
+
+.shimmer-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 16px 0px rgba(0, 0, 0, 0.2);
+}
+.shimmer-card .image-container {
+    height: 150px;
+    background-color: rgb(187, 187, 187);
+    }
+    
+.shimmer-title {
+   font-size: 24px;
+}
+
+.shimmer-text {
+    padding-inline: 16px;
+}
+
+.shimmer-title,.shimmer-text p{
+    background-color: rgb(158, 158, 158);
+    color: rgb(158, 158, 158);
+    margin:0.8rem 0;
+    width: fit-content;
+}

@@ -1,9 +1,10 @@
 import { React, useState, useEffect,Link } from "react";
 import "./CountryDetails.css";
+import CountryDetailsShimmer from "./CountryDetailsShimmer";
 import { useParams,Link } from "react-router-dom";
 export default function CountryDetails() {
   const { countryName } = useParams();
-  console.log(countryName);
+  console.log('entered',countryName);
   const [countryData, setCountryData] = useState("");
   useEffect(function () {
     fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
@@ -12,13 +13,15 @@ export default function CountryDetails() {
         var [country] = data.filter((country) => {
           return country.name.common.toLowerCase() === countryName.toLowerCase();
         });
-        console.log(country)
+        console.log(country.borders)
+        // console.log(Object.values(Object.values(country.name.nativeName)[0])[1])
+        console.log('setting country data for the first time')
         setCountryData({
           name:country.name.common?country.name.common:"Not Found",
           flag:country.flags.svg,
           officialName:country.name.official,
           nativeName:country.name.nativeName?
-          <span>{Object.values(Object.values(country.name.nativeName)[0])[1]}</span>:'No native name found',
+          Object.values(Object.values(country.name.nativeName)[0])[1]:'No native name found',
 
           population:country.population.toLocaleString("en-IN"),
           region: country.region,
@@ -29,7 +32,7 @@ export default function CountryDetails() {
           .map((currency) => currency.name)
           .join(", "):'Not Found',
           languages:country.languages?Object.values(country.languages).join(", "):'No languages found',
-          borders: []
+          border: []
         })
 
         if(!country.borders) {
@@ -39,16 +42,20 @@ export default function CountryDetails() {
         Promise.all(country.borders.map(async (border) => {
           return await fetch(`https://reactcountriesdata.netlify.app/public/borders/${border.toLowerCase()}.json`)
           .then((res) => res.json())
-          .then(([borderCountry]) => borderCountry.name.common)
+          .then(([borderCountry]) => {
+            // console.log(borderCountry.name.common)
+            return borderCountry.name.common
+            })
         })).then((borders) => {
-          setCountryData((prevState) => ({...prevState, borders}))
+          console.log('set country dafta 2nd time for borders')
+          setCountryData((prevState) => ( {...prevState, border:borders}))
         })
       
       });
   }, [countryName]);
   // console.log(countryData);
   return countryData === "" ? (
-    "loading..."
+    <CountryDetailsShimmer />
   ) : (
     <main>
       <div className="country-details-container">
@@ -64,66 +71,53 @@ export default function CountryDetails() {
             <h1>{countryData.name}</h1>
             <div className="details-text">
               <p>
-                <b>Official Name: {countryData.officialName}</b>
-                <span className="native-name"></span>
+                <b>Official Name: </b>
+                {countryData.officialName}
               </p>
               <p>
-                <b>
-                  Native Name:{countryData.nativeName}
-                  {}
-                </b>
-                <span className="native-name"></span>
-              </p>
-              <p>
-                <b>
-                  Population:{countryData.population}
-                </b>
-                <span className="population"></span>
-              </p>
-              <p>
-                <b>Region: {countryData.region}</b>
-                <span className="region"></span>
-              </p>
-              <p>
-                <b>Sub Region: {countryData.subRegion}</b>
-                <span className="sub-region"></span>
-              </p>
-              <p>
-                <b>Capital: {countryData.capital}</b>
-                <span className="capital"></span>
-              </p>
-              <p>
-                <b>Top Level Domain: {countryData.tld}</b>
-                <span className="top-level-domain"></span>
-              </p>
-              <p>
-                <b>
-                  Currencies:{countryData.curruncies}
-                </b>
-                <span className="currencies"></span>
-              </p>
-              <p>
-                <b>
-                  Languages:
-                  {countryData.languages}
-                </b>
-                <span className="languages"></span>
-              </p>
-              <p className="border-countries"> 
-                <b>
-                  Border-Countries:       
-                  
-                   {countryData.borders.length!=0?
-                   countryData.borders.map((border)=>
-                    <Link to={`/${border}`} className="link">{border}</Link>
-                   ):"No bordering countries found"
-                  }
-                   
-                
-                </b>
-              </p>
-            </div>
+                <b>Native Name: </b>
+                {countryData.nativeName}
            
+              </p>
+              <p>
+                <b>Population: </b>
+                {countryData.population}
+            
+              </p>
+              <p>
+                <b>Region: </b>
+                {countryData.region}
+              </p>
+              <p>
+                <b>Sub Region: </b>
+                {countryData.subRegion}
+              </p>
+              <p>
+                <b>Capital: </b>
+                {countryData.capital}
+              </p>
+              <p>
+                <b>Top Level Domain: </b>
+                {countryData.tld}
+              </p>
+              <p>
+                <b>Currencies: </b>
+                {countryData.curruncies}
+              </p>
+              <p>
+                <b>Languages: </b>
+                {countryData.languages}
+              </p>
+             
+            </div>
+            <p className="border-countries"> 
+                <b>Border-Countries: </b>
+                {countryData.border.length!=0?
+                   countryData.border.map((border)=>
+                    <Link to={`/${border}`} className="link">{border}</Link>
+                   ):<span>Not Found</span>
+                  }
+              </p>
           </div>
         </div>
       </div>
