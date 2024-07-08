@@ -1,11 +1,12 @@
 import { React, useState, useEffect,Link } from "react";
 import "./CountryDetails.css";
 import CountryDetailsShimmer from "./CountryDetailsShimmer";
-import { useParams,Link } from "react-router-dom";
+import { useParams,Link, useOutletContext } from "react-router-dom";
 export default function CountryDetails() {
   const { countryName } = useParams();
   console.log('entered',countryName);
   const [countryData, setCountryData] = useState("");
+  const [isDark]=useOutletContext()
   useEffect(function () {
     fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
       .then((raw) => raw.json())
@@ -57,7 +58,7 @@ export default function CountryDetails() {
   return countryData === "" ? (
     <CountryDetailsShimmer />
   ) : (
-    <main>
+    <main className={`${isDark?'dark':'light'}`}>
       <div className="country-details-container">
         <span className="back-button" onClick={() => history.back()}>
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back

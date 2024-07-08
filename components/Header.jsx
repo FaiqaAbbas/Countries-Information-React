@@ -1,22 +1,18 @@
 import { useState } from "react"
-export default function Header() {
-  const [isDark, setisDark] = useState(JSON.parse(localStorage.getItem('isDark')))
-  if(isDark==true){
-    document.body.classList.add('dark')
-  }
-  else{
-      document.body.classList.toggle('dark')
-  }
+import { useOutletContext } from "react-router-dom"
+export default function Header({theme}) {
+  const [isDark,setisDark]=theme
+
 
   return (
-    <header className="header-container">
+    <header className= {`header-container ${isDark?'dark':'light'}`}>
       <div className="header-content">
         <h2 className="title">
           <a href="/">Where in the world?</a>
         </h2>
         <p className="theme-changer" onClick={()=>{
-          isDark==false?setisDark(true):setisDark(false)
-          localStorage.setItem('isDark',isDark)
+          localStorage.setItem('isDark',!isDark)
+          isDark?setisDark(false):setisDark(true)
     
         }}>
           <i className={`fa-regular fa-${isDark?'sun':'moon'}`} />
