@@ -1,10 +1,8 @@
-import { useState } from "react"
-import { useOutletContext } from "react-router-dom"
-export default function Header({theme}) {
-  const [isDark,setisDark]=theme
-
-
-  return (
+import { useContext, useState } from "react"
+import { themeContext } from "../contexts/themeContext"
+export default function Header() {
+  const [isDark,setisDark]=useContext(themeContext)
+    return (
     <header className= {`header-container ${isDark?'dark':'light'}`}>
       <div className="header-content">
         <h2 className="title">

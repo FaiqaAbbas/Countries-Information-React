@@ -27262,34 +27262,34 @@ var _header = require("./components/Header");
 var _headerDefault = parcelHelpers.interopDefault(_header);
 var _appCss = require("/App.css");
 var _reactRouterDom = require("react-router-dom");
+var _themeContext = require("./contexts/themeContext");
 var _s = $RefreshSig$();
+console.log((0, _themeContext.themeContext));
 const App = ()=>{
     _s();
     const [isDark, setisDark] = (0, _react.useState)(JSON.parse(localStorage.getItem("isDark")));
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _themeContext.themeContext).Provider, {
+        value: [
+            isDark,
+            setisDark
+        ],
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {
-                theme: [
-                    isDark,
-                    setisDark
-                ]
-            }, void 0, false, {
-                fileName: "App.jsx",
-                lineNumber: 10,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {
-                context: [
-                    isDark,
-                    setisDark
-                ]
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {}, void 0, false, {
                 fileName: "App.jsx",
                 lineNumber: 11,
                 columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {}, void 0, false, {
+                fileName: "App.jsx",
+                lineNumber: 12,
+                columnNumber: 7
             }, undefined)
         ]
-    }, void 0, true);
+    }, void 0, true, {
+        fileName: "App.jsx",
+        lineNumber: 10,
+        columnNumber: 5
+    }, undefined);
 };
 _s(App, "cQmU9BtSMY7iADekOLFl8cTq0b8=");
 _c = App;
@@ -27302,7 +27302,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./components/Header":"6nmoh","/App.css":"7g3a6","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"6nmoh":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./components/Header":"6nmoh","/App.css":"7g3a6","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","./contexts/themeContext":"31pEI"}],"6nmoh":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6433 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27314,9 +27314,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>Header);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactRouterDom = require("react-router-dom");
-function Header({ theme }) {
-    const [isDark, setisDark] = theme;
+var _themeContext = require("../contexts/themeContext");
+var _s = $RefreshSig$();
+function Header() {
+    _s();
+    const [isDark, setisDark] = (0, _react.useContext)((0, _themeContext.themeContext));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
         className: `header-container ${isDark ? "dark" : "light"}`,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27329,12 +27331,12 @@ function Header({ theme }) {
                         children: "Where in the world?"
                     }, void 0, false, {
                         fileName: "components/Header.jsx",
-                        lineNumber: 11,
+                        lineNumber: 9,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "components/Header.jsx",
-                    lineNumber: 10,
+                    lineNumber: 8,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27348,7 +27350,7 @@ function Header({ theme }) {
                             className: `fa-regular fa-${isDark ? "sun" : "moon"}`
                         }, void 0, false, {
                             fileName: "components/Header.jsx",
-                            lineNumber: 18,
+                            lineNumber: 16,
                             columnNumber: 11
                         }, this),
                         "\xa0\xa0",
@@ -27356,21 +27358,22 @@ function Header({ theme }) {
                     ]
                 }, void 0, true, {
                     fileName: "components/Header.jsx",
-                    lineNumber: 13,
+                    lineNumber: 11,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "components/Header.jsx",
-            lineNumber: 9,
+            lineNumber: 7,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "components/Header.jsx",
-        lineNumber: 8,
+        lineNumber: 6,
         columnNumber: 5
     }, this);
 }
+_s(Header, "0VVZVT2X/WWweMCdYAjTdn1m/iA=");
 _c = Header;
 var _c;
 $RefreshReg$(_c, "Header");
@@ -27380,7 +27383,7 @@ $RefreshReg$(_c, "Header");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-router-dom":"9xmpe"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","../contexts/themeContext":"31pEI"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27548,7 +27551,25 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}],"9xmpe":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"31pEI":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$d10f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$d10f.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "themeContext", ()=>themeContext);
+var _react = require("react");
+var themeContext = /*#__PURE__*/ (0, _react.createContext)("");
+
+  $parcel$ReactRefreshHelpers$d10f.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7g3a6":[function() {},{}],"9xmpe":[function(require,module,exports) {
 /**
  * React Router DOM v6.23.1
  *
@@ -34241,7 +34262,7 @@ function persistAppliedTransitions(_window, transitions) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7g3a6":[function() {},{}],"iQl8a":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iQl8a":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$d595 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -34252,16 +34273,15 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
 var _searchBar = require("./SearchBar");
 var _searchBarDefault = parcelHelpers.interopDefault(_searchBar);
 var _countriesList = require("./CountriesList");
 var _countriesListDefault = parcelHelpers.interopDefault(_countriesList);
-var _reactRouterDom = require("react-router-dom");
+var _themeContext = require("../contexts/themeContext");
 var _s = $RefreshSig$();
 const Home = ()=>{
     _s();
-    const [isDark] = (0, _reactRouterDom.useOutletContext)();
+    const [isDark] = (0, _react.useContext)((0, _themeContext.themeContext));
     const [searchQuery, setsearchQuery] = (0, _react.useState)("");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
@@ -34273,34 +34293,30 @@ const Home = ()=>{
                         setsearchQuery: setsearchQuery
                     }, void 0, false, {
                         fileName: "components/Home.jsx",
-                        lineNumber: 15,
+                        lineNumber: 14,
                         columnNumber: 13
                     }, undefined)
                 }, void 0, false, {
                     fileName: "components/Home.jsx",
-                    lineNumber: 14,
+                    lineNumber: 13,
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _countriesListDefault.default), {
                     searchQuery: searchQuery
                 }, void 0, false, {
                     fileName: "components/Home.jsx",
-                    lineNumber: 17,
+                    lineNumber: 16,
                     columnNumber: 11
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "components/Home.jsx",
-            lineNumber: 13,
+            lineNumber: 12,
             columnNumber: 9
         }, undefined)
     }, void 0, false);
 };
-_s(Home, "fOTQvR07SJK3kNOw5lV8DDIx58I=", false, function() {
-    return [
-        (0, _reactRouterDom.useOutletContext)
-    ];
-});
+_s(Home, "Qeq2nwYxlZV3xdRkxVaKGWl+G00=");
 _c = Home;
 exports.default = Home;
 var _c;
@@ -34311,7 +34327,7 @@ $RefreshReg$(_c, "Home");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./SearchBar":"4HJPW","./CountriesList":"bJsk6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe"}],"4HJPW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./SearchBar":"4HJPW","./CountriesList":"bJsk6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../contexts/themeContext":"31pEI"}],"4HJPW":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e8d4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -34561,7 +34577,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _countriesListShimmerCss = require("./CountriesListShimmer.css");
 function CountriesListShimmer() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        class: "countries-container",
+        className: "countries-container",
         children: Array.from({
             length: 10
         }).map((elem, index)=>{
@@ -34572,13 +34588,13 @@ function CountriesListShimmer() {
                         className: "image-container",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {}, void 0, false, {
                             fileName: "components/CountriesListShimmer.jsx",
-                            lineNumber: 12,
-                            columnNumber: 19
+                            lineNumber: 10,
+                            columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "components/CountriesListShimmer.jsx",
-                        lineNumber: 11,
-                        columnNumber: 17
+                        lineNumber: 9,
+                        columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: "shimmer-text",
@@ -34588,46 +34604,46 @@ function CountriesListShimmer() {
                                 children: "Moldova"
                             }, void 0, false, {
                                 fileName: "components/CountriesListShimmer.jsx",
-                                lineNumber: 15,
-                                columnNumber: 19
+                                lineNumber: 13,
+                                columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: "Population: 3123123"
                             }, void 0, false, {
                                 fileName: "components/CountriesListShimmer.jsx",
-                                lineNumber: 16,
-                                columnNumber: 19
+                                lineNumber: 14,
+                                columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: "Region alskdjfa"
                             }, void 0, false, {
                                 fileName: "components/CountriesListShimmer.jsx",
-                                lineNumber: 17,
-                                columnNumber: 19
+                                lineNumber: 15,
+                                columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: "aldsf asldfj"
                             }, void 0, false, {
                                 fileName: "components/CountriesListShimmer.jsx",
-                                lineNumber: 18,
-                                columnNumber: 19
+                                lineNumber: 16,
+                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "components/CountriesListShimmer.jsx",
-                        lineNumber: 14,
-                        columnNumber: 17
+                        lineNumber: 12,
+                        columnNumber: 13
                     }, this)
                 ]
-            }, void 0, true, {
+            }, index, true, {
                 fileName: "components/CountriesListShimmer.jsx",
-                lineNumber: 10,
-                columnNumber: 17
+                lineNumber: 8,
+                columnNumber: 11
             }, this);
         })
     }, void 0, false, {
         fileName: "components/CountriesListShimmer.jsx",
-        lineNumber: 6,
+        lineNumber: 5,
         columnNumber: 5
     }, this);
 }
