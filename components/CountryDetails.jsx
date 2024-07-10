@@ -1,12 +1,13 @@
-import { React, useState, useEffect,Link } from "react";
+import { React, useState, useEffect,useContext } from "react";
 import "./CountryDetails.css";
 import CountryDetailsShimmer from "./CountryDetailsShimmer";
-import { useParams,Link, useOutletContext } from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
+import { themeContext } from "../contexts/themeContext";
 export default function CountryDetails() {
   const { countryName } = useParams();
   console.log('entered',countryName);
   const [countryData, setCountryData] = useState("");
-  const [isDark]=useOutletContext()
+  const [isDark]=useContext(themeContext)
   useEffect(function () {
     fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
       .then((raw) => raw.json())
