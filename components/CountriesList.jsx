@@ -4,7 +4,7 @@ import CountriesListShimmer from './CountriesListShimmer'
 export default function CountriesList({searchQuery}) {
   const [countriesData, setcountriesData] = useState([])
   useEffect(()=>{
-    fetch('https://vercel-countries-hosted.vercel.app/countriesdata.json')
+    fetch('https://vercel-countries-hosted.vercel.app/countriesData.json')
     .then((raw)=>raw.json())
     .then((data) => {
      setcountriesData(data)

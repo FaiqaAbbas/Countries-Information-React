@@ -34414,7 +34414,7 @@ function CountriesList({ searchQuery }) {
     _s();
     const [countriesData, setcountriesData] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
-        fetch("https://vercel-countries-hosted.vercel.app/countriesdata.json").then((raw)=>raw.json()).then((data)=>{
+        fetch("https://vercel-countries-hosted.vercel.app/countriesData.json").then((raw)=>raw.json()).then((data)=>{
             setcountriesData(data);
         });
     }, []);
