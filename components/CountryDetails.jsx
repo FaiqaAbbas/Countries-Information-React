@@ -9,7 +9,7 @@ export default function CountryDetails() {
   const [countryData, setCountryData] = useState("");
   const [isDark]=useContext(themeContext)
   useEffect(function () {
-    fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json")
+    fetch("https://vercel-countries-hosted.vercel.app/countriesData.json")
       .then((raw) => raw.json())
       .then((data) => {
         var [country] = data.filter((country) => {
@@ -42,7 +42,7 @@ export default function CountryDetails() {
         }
 
         Promise.all(country.borders.map(async (border) => {
-          return await fetch(`https://reactcountriesdata.netlify.app/public/borders/${border.toLowerCase()}.json`)
+          return await fetch(`https://vercel-countries-hosted.vercel.app/borders/${border.toLowerCase()}.json`)
           .then((res) => res.json())
           .then(([borderCountry]) => {
             // console.log(borderCountry.name.common)
