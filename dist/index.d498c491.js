@@ -34414,7 +34414,7 @@ function CountriesList({ searchQuery }) {
     _s();
     const [countriesData, setcountriesData] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
-        fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json").then((raw)=>raw.json()).then((data)=>{
+        fetch("https://vercel-countries-hosted.vercel.app/countriesdata.json").then((raw)=>raw.json()).then((data)=>{
             setcountriesData(data);
         });
     }, []);
@@ -34695,7 +34695,7 @@ function CountryDetails() {
     const [countryData, setCountryData] = (0, _react.useState)("");
     const [isDark] = (0, _react.useContext)((0, _themeContext.themeContext));
     (0, _react.useEffect)(function() {
-        fetch("https://reactcountriesdata.netlify.app/public/countriesdata.json").then((raw)=>raw.json()).then((data)=>{
+        fetch("https://vercel-countries-hosted.vercel.app/countriesData.json").then((raw)=>raw.json()).then((data)=>{
             var [country] = data.filter((country)=>{
                 return country.name.common.toLowerCase() === countryName.toLowerCase();
             });
@@ -34718,7 +34718,7 @@ function CountryDetails() {
             });
             if (!country.borders) country.borders = [];
             Promise.all(country.borders.map(async (border)=>{
-                return await fetch(`https://reactcountriesdata.netlify.app/public/borders/${border.toLowerCase()}.json`).then((res)=>res.json()).then(([borderCountry])=>{
+                return await fetch(`https://vercel-countries-hosted.vercel.app/borders/${border.toLowerCase()}.json`).then((res)=>res.json()).then(([borderCountry])=>{
                     // console.log(borderCountry.name.common)
                     return borderCountry.name.common;
                 });
