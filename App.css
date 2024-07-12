@@ -29,6 +29,8 @@ main {
 a {
     text-decoration-line: none;
     color: inherit;
+    border:2px solid white;
+    border-radius:1rem;
 }
 
 .header-container {
