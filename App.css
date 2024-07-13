@@ -28,6 +28,7 @@ main {
 .border-countries a{
        border:2px solid white;
     border-radius:1rem;
+    box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.2);
 }
 a {
     text-decoration-line: none;
