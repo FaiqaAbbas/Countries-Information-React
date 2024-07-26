@@ -18,7 +18,7 @@ main, header {
 main.dark, header.dark {
     --background-color: hsl(207, 26%, 17%); 
     --text-color: white;
-    --elements-color: hsl(209, 23%, 22%);
+    --elements-color: hsl(209, 23%, 25%);
 }
 
 main {
