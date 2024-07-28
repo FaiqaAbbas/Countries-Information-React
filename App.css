@@ -22,7 +22,7 @@ main.dark, header.dark {
 }
 
 main {
-    padding: 24px;
+    padding: 29px;
     min-height: calc(100vh - 73px);
 }
 .border-countries a{
